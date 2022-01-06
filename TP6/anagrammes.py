@@ -42,9 +42,10 @@ def permutations(l : list) -> list:
     '''renvoie la liste des permutations de s'''
     pass
 
+from mysteres import mystere2
 def sont_anagrammes1(mot1 : str, mot2 : str) -> bool:
     '''teste si deux mots sont anagrammes'''
-    pass
+    return mystere2(list(mot1)) == mystere(list(mot2))
 
 ## une seconde méthode
 
