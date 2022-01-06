@@ -1,22 +1,21 @@
 from random import randint
 
 def fusionner(L1 : list[int], L2 : list[int]):
-    mergedList = L1 if len(L1) >= len(L2) else L2
-    mergingList = L2 if len(L1) >= len(L2) else L1
-    
-    while mergingList:
-        for i in range(len(mergedList)):
-            for item in mergingList:
-                if item <= mergedList[i]:
-                    mergedList.insert(i, item)
-                    mergedList.pop(i)
-        if len (mergingList) == 1:
-            mergedList.append(mergingList[0])
-            mergingList.pop(0)
+    bigger_list = L1 if len(L1) >= len(L2) else L2
+    smaller_list = L2 if len(L1) >= len(L2) else L1
 
-    return mergedList
-    
-
+    for e in smaller_list:
+        i = 0
+        while bigger_list[i] < e:
+            if i == len(bigger_list) -1:
+                bigger_list.append(e)
+                break
+            else:
+                i+=1
+        if bigger_list[-1] != e:
+            bigger_list.insert(i, e)      
+    return bigger_list
+        
 
 def triFusion(L : list[int]):
     if len(L) <= 1:
@@ -25,5 +24,5 @@ def triFusion(L : list[int]):
     return fusionner(triFusion(L[:m]), triFusion(L[m:]))
 
 
-L = [0, 2, 5, 9]; L2 = [3, 6, 8, 45]
-print(fusionner(L, L2))
+L = [randint(0, 20) for _ in range(20)]
+print(triFusion(L))
